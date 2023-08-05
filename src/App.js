@@ -1,8 +1,12 @@
+import Navbar from "./common/Navbar";
+import SignIn from "./components/LoginSignUpPage/SignIn";
+
 function App() {
   return (
-    <div>
-      <h1>Hello World</h1>
-    </div>
+    <>
+      <Navbar />
+      <SignIn/>
+    </>
   );
 }
 
