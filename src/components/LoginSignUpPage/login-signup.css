@@ -6,11 +6,12 @@
   max-width: 442px;
   margin: auto;
   margin-top: 6rem;
+  
 }
 .sign-in__container a {
   position: absolute;
   bottom: -40px;
-  left: 8px;
+  left: 46%;
 }
 .sign-in__logo {
   display: flex;
@@ -35,4 +36,7 @@
   flex-direction: column;
   gap: 26px;
   min-width: 428px;
+}
+a{
+  text-align:end;
 }

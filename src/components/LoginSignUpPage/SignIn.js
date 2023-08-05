@@ -25,7 +25,12 @@ const SignIn = () => {
           />
           <Button variant="contained">Sign In</Button>
         </form>
-          <a href="something.com">Don't have an account? Sign Up</a>
+          <a href="something.com" style={{
+            position: "absolute",
+            left:6
+          
+
+          }}>Don't have an account? Sign Up</a>
       </div>
     </>
   );
