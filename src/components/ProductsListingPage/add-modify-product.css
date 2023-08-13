@@ -1,0 +1,44 @@
+.sign-in__container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  max-width: 442px;
+  margin: auto;
+  margin-top: 6rem;
+}
+.sign-in__container a {
+  position: absolute;
+  bottom: -40px;
+  left: 46%;
+}
+.sign-in__logo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 32px;
+}
+.logo {
+  width: 42px;
+  height: 42px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f50057;
+  color: white;
+  border-radius: 50%;
+}
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 26px;
+  min-width: 428px;
+}
+a {
+  text-align: end;
+}
+.select-menu-outer {
+  z-index: 100 !important;
+}

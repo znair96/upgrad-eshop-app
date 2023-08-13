@@ -1,0 +1,19 @@
+.toggle-category-button-container {
+  display: flex;
+  justify-content: center;
+  margin: 2rem 0;
+}
+.react-select__control {
+  width: 20%;
+}
+.react-select__menu {
+  max-width: 20%;
+}
+.product-listing-cards-container {
+  /* margin: 0 5rem; */
+  width: 84%;
+  margin: auto;
+}
+.product-card-list {
+  margin: 2.5rem 0;
+}
