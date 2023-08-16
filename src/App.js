@@ -7,6 +7,7 @@ import SignUpComponent from "./routes/signup.component";
 import ProductListingComponent from "./routes/product-list.component";
 import ModifyProductComponent from "./routes/modify-product.component";
 import AddProductComponent from "./routes/add-product.component";
+import ProductStepperComponent from "./routes/product-detail.component.jsx"
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Route path="products" element={<ProductListingComponent />} />
         <Route path="modify-product" element={<ModifyProductComponent />} />
         <Route path="add-product" element={<AddProductComponent />} />
+        <Route path="product-detail" element={<ProductStepperComponent/>} />
       </Route>
     </Routes>
   );
