@@ -1,10 +1,42 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
-import { Button, TextField, Typography } from "@mui/material";
+import { Alert, Button, Snackbar, TextField, Typography } from "@mui/material";
 import "./login-signup.css";
-const SignIn = () => {
+import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
+import { signIn } from "../../reducers/userReducer";
+import { useNavigate } from "react-router-dom";
+const SignIn = ({ open, setOpen }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  // const [open, setOpen] = useState(false);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const isLoggedIn = useSelector((state) => state.user.isLoggedIn);
+  useEffect(() => {
+    if (isLoggedIn) {
+      navigate("/products");
+    }
+  }, [isLoggedIn]);
+  const handleClick = () => {
+    setOpen(true);
+  };
+  const handleClose = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+
+    setOpen(false);
+  };
+  const logInHandler = async () => {
+    const response = await axios.post("http://localhost:8080/api/auth/signin", {
+      username,
+      password,
+    });
+    console.log(response.data);
+    dispatch(signIn(response.data));
+    navigate("/products");
+  };
   return (
     <>
       <div className="sign-in__container">
@@ -35,7 +67,9 @@ const SignIn = () => {
             onChange={(e) => setPassword(e.target.value)}
             value={password}
           />
-          <Button variant="contained">Sign In</Button>
+          <Button variant="contained" onClick={logInHandler}>
+            Sign In
+          </Button>
         </form>
         <a
           href="something.com"
@@ -46,6 +80,20 @@ const SignIn = () => {
         >
           Don't have an account? Sign Up
         </a>
+        <Snackbar
+          open={open}
+          autoHideDuration={2000}
+          onClose={handleClose}
+          anchorOrigin={{ horizontal: "right", vertical: "top" }}
+        >
+          <Alert
+            onClose={handleClose}
+            severity="success"
+            sx={{ width: "100%" }}
+          >
+            User Registered Successfully
+          </Alert>
+        </Snackbar>
       </div>
     </>
   );
