@@ -33,8 +33,9 @@ const SignIn = ({ open, setOpen }) => {
       username,
       password,
     });
-    console.log(response.data);
+    console.log(response);
     dispatch(signIn(response.data));
+    localStorage.setItem("x-auth-token", response.headers["x-auth-token"]);
     navigate("/products");
   };
   return (

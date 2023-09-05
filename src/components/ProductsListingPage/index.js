@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import "./product-listing.css";
 import Select from "react-select";
 import ProductCard from "./ProductCard";
+import axios from "axios";
 const sortList = [
   { value: "default", label: "Default" },
   { value: "pricehightolow", label: "Price: High to Low" },
@@ -22,9 +23,13 @@ const ProductsListingPage = () => {
   console.log(sortOption);
   useEffect(() => {
     const fetchData = async () => {
-      const response = await fetch("https://fakestoreapi.com/products");
-      const data = await response.json();
-      setProductList(data);
+      const response = await axios.get("http://localhost:8080/api/products", {
+        headers: {
+          "Content-Type": "application/json",
+          "x-auth-token": localStorage.getItem("x-auth-token"),
+        },
+      });
+      setProductList(response.data);
     };
     fetchData();
     console.log(productList);
@@ -69,7 +74,7 @@ const ProductsListingPage = () => {
                   sm={4}
                   md={4}
                   key={index}
-                  style={{ display: "flex" }}
+                  // style={{ display: "flex" }}
                 >
                   <ProductCard product={product} />
                 </Grid>

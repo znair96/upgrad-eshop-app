@@ -11,9 +11,11 @@ import React from "react";
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 const ProductCard = ({ product }) => {
-  const { image, title, description, price } = product;
+  const { id, imageUrl, name, description, price } = product;
   const userRole = useSelector((state) => state.user.user.roles[0]);
+  const navigate = useNavigate();
   return (
     <Card
       sx={{ maxWidth: 400, minHeight: 450 }}
@@ -26,8 +28,8 @@ const ProductCard = ({ product }) => {
     >
       <CardMedia
         sx={{ height: 224, objectFit: "contain" }}
-        image={image}
-        title={title}
+        image={imageUrl}
+        title={name}
         style={{
           backgroundSize: "contain",
         }}
@@ -41,7 +43,7 @@ const ProductCard = ({ product }) => {
           }}
         >
           <Typography gutterBottom variant="h6" component="div">
-            {title}
+            {name}
           </Typography>
           <Typography gutterBottom variant="h6" component="div">
             Rs.{price}
@@ -85,7 +87,10 @@ const ProductCard = ({ product }) => {
               <IconButton aria-label="delete">
                 <DeleteIcon />
               </IconButton>
-              <IconButton aria-label="delete">
+              <IconButton
+                aria-label="delete"
+                onClick={() => navigate(`/modify-product/${id}`)}
+              >
                 <EditIcon />
               </IconButton>
             </div>

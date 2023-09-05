@@ -6,7 +6,8 @@ import { styled, alpha } from "@mui/material/styles";
 import SearchIcon from "@mui/icons-material/Search";
 import InputBase from "@mui/material/InputBase";
 import "./navbar.css";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { signOut } from "../reducers/userReducer";
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
   borderRadius: theme.shape.borderRadius,
@@ -51,7 +52,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 const Navbar = () => {
   const isLoggedIn = useSelector((state) => state.user.isLoggedIn);
   const user = useSelector((state) => state.user.user);
-
+  const dispatch = useDispatch();
   return (
     <Fragment>
       <nav>
@@ -82,11 +83,15 @@ const Navbar = () => {
             <>
               <Link to="/">Home</Link>
               <Link to="/add-product">Add Product</Link>
-              <Link to="/sign-in">
+              <Link to="/">
                 <Button
                   variant="contained"
                   style={{
                     backgroundColor: "#F50157",
+                  }}
+                  onClick={() => {
+                    dispatch(signOut());
+                    localStorage.removeItem("x-auth-token");
                   }}
                 >
                   Log Out

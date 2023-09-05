@@ -1,17 +1,20 @@
 import React, { useState } from "react";
-import { Button, TextField, Typography } from "@mui/material";
+import { Alert, Button, Snackbar, TextField, Typography } from "@mui/material";
 import Select from "react-select";
 import "./add-modify-product.css";
 import { categoryList } from "./category";
 import { v4 as uuidv4 } from "uuid";
 import axios from "axios";
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 const AddProduct = () => {
   const [categoryOption, selectCategoryOption] = useState("");
   const accessToken = useSelector((state) => state.user.user.token);
+  const [successBar, setSuccessBar] = useState(false);
   const onCategoryChangeHandler = (e) => {
     selectCategoryOption(e.value);
   };
+  const navigate = useNavigate();
   const selectStyles = {
     menu: (base) => ({
       ...base,
@@ -47,11 +50,22 @@ const AddProduct = () => {
         {
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer ${accessToken}`,
+            "x-auth-token": localStorage.getItem("x-auth-token"),
           },
         }
       );
-      console.log(response);
+      setAddProductData({
+        name: "",
+        manufacturer: "",
+        availableItems: "",
+        password: "",
+        price: "",
+        imageURL: "",
+        productDescription: "",
+      });
+      selectCategoryOption("");
+      setSuccessBar(true);
+      navigate("/products");
     } catch (error) {
       console.log(error);
     }
@@ -145,6 +159,15 @@ const AddProduct = () => {
             Save Product
           </Button>
         </form>
+        <Snackbar
+          open={successBar}
+          autoHideDuration={2000}
+          anchorOrigin={{ vertical: "top", horizontal: "right" }}
+        >
+          <Alert severity="success" sx={{ width: "100%" }}>
+            Product added successfully
+          </Alert>
+        </Snackbar>
       </div>
     </>
   );

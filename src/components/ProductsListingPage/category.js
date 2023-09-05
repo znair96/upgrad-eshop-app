@@ -1,5 +1,5 @@
 export const categoryList = [
-    { value: "apparel", label: "Apparel" },
-    { value: "electronics", label: "Electronics" },
-    { value: "personal-care", label: "Personal Care" },
-  ];
+  { value: "apparel", label: "apparel" },
+  { value: "electronics", label: "electronics" },
+  { value: "personal-care", label: "personal care" },
+];

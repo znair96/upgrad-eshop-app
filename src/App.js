@@ -23,7 +23,10 @@ function App() {
           element={<SignUpComponent open={open} setOpen={setOpen} />}
         />
         <Route path="products" element={<ProductListingComponent />} />
-        <Route path="modify-product" element={<ModifyProductComponent />} />
+        <Route
+          path="modify-product/:productId"
+          element={<ModifyProductComponent />}
+        />
         <Route path="add-product" element={<AddProductComponent />} />
       </Route>
     </Routes>
